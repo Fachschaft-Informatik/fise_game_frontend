@@ -8,7 +8,7 @@
         <passive v-else-if="status === 'passive'" />
         <active v-else-if="status === 'active'" />
         <result v-else-if="status === 'finished'" />
-        <rejoin v-else/>
+        <rejoin v-else />
       </v-row>
     </v-col>
   </v-container>

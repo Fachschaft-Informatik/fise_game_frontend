@@ -35,12 +35,11 @@ import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      btnText: "SEND",
       loading: false
     };
   },
   computed: {
-    ...mapState(["message", "team", "teammates"]),
+    ...mapState(["message", "team", "teammates", "messageSend"]),
     myMessage: {
       get: function() {
         return this.message;
@@ -48,6 +47,9 @@ export default {
       set: function(newValue) {
         this.setMessage(newValue);
       }
+    },
+    btnText: function() {
+      return this.messageSend ? "UPDATE" : "SEND";
     }
   },
   methods: {
@@ -56,7 +58,6 @@ export default {
     async send() {
       this.loading = true;
       await this.sendMessage();
-      this.btnText = "UPDATE";
     }
   },
   watch: {
