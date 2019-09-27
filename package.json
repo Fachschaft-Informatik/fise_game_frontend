@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "LOCAL=true vue-cli-service serve",
     "build": "NODE_ENV=production vue-cli-service build",
     "deploy:b": "npm run build && gh-pages -d dist",
     "deploy":"gh-pages -d dist",

@@ -35,11 +35,12 @@ import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      loading: false
+      loading: false,
+      messageSend: false
     };
   },
   computed: {
-    ...mapState(["message", "team", "teammates", "messageSend"]),
+    ...mapState(["message", "team", "teammates"]),
     myMessage: {
       get: function() {
         return this.message;
@@ -58,6 +59,7 @@ export default {
     async send() {
       this.loading = true;
       await this.sendMessage();
+      this.messageSend = true;
     }
   },
   watch: {

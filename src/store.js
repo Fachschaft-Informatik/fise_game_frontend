@@ -1,8 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-const server = "localhost";
-const port = "8808";
+const server = JSON.parse(process.env.LOCAL)
+  ? "localhost"
+  : "http://backend-fise-game.apps.us-west-1.starter.openshift-online.com";
+const port = JSON.parse(process.env.LOCAL) ? "8808" : "8080";
 
 const getOptions = {
   cache: "no-cache",
@@ -116,7 +118,7 @@ export default new Vuex.Store({
         if (message !== "no message") {
           commit("setMessage", message);
         }
-        if (!state.foundTeam){
+        if (!state.foundTeam) {
           setTimeout(() => dispatch("getMessage"), 5000);
         }
       } catch (_) {
@@ -156,7 +158,7 @@ export default new Vuex.Store({
         );
         const answer = await res.json();
 
-        if (answer.message !== "pending") {
+        if (answer.message !== "registered" && answer.message !== "findTeam") {
           commit("setRoundLoop", false);
           commit("updateRound");
           commit("updateStatus", answer.message);
